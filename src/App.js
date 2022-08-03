@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function App() {
   const [todos, setTodos] = useState([]);
 
-  const [todo, setTodo] = useState([]);
+  const [todo, setTodo] = useState("");
 
   const onChange = (e) => {
     setTodo(e.target.value);

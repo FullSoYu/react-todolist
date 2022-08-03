@@ -9,17 +9,37 @@ function App() {
     setTodo(e.target.value);
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (todo === "") {
+      alert("한글자 이상 등록");
+      return;
+    }
+
+    setTodos((currentArray) => [todo, ...currentArray]);
+    setTodo("");
+  };
+
   return (
     <div>
       <h1>할 일</h1>
-      <form action="">
+      <form onSubmit={onSubmit}>
         <input
           type="text"
           onChange={onChange}
           value={todo}
           placeholder="할 일을 적어주세요."
         />
+        <button>등록</button>
       </form>
+      <button
+        onClick={() => {
+          console.log(todos);
+        }}
+      >
+        check
+      </button>
     </div>
   );
 }

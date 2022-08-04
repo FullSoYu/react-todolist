@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function App() {
   const [todos, setTodos] = useState([]);
 
-  const [todo, setTodo] = useState([]);
+  const [todo, setTodo] = useState("");
 
   const onChange = (e) => {
     setTodo(e.target.value);
@@ -13,7 +13,7 @@ function App() {
     e.preventDefault();
 
     if (todo === "") {
-      alert("한글자 이상 등록");
+      alert("한글자 이상 입력하세요.");
       return;
     }
 
@@ -40,6 +40,12 @@ function App() {
       >
         check
       </button>
+      <hr />
+      <ul>
+        {todos.map((todo) => (
+          <li>{todo}</li>
+        ))}
+      </ul>
     </div>
   );
 }

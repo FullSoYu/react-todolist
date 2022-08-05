@@ -8,18 +8,26 @@ function App() {
   const nextId = useRef(1);
   const onInsert = (text) => {
     const todo = {
-      id: nextId,
+      id: nextId.current,
       text: text,
       checked: false,
     };
     setTodos((todos) => todos.concat(todo));
-    nextId++;
+    nextId.current++;
+  };
+
+  const onToggle = (id) => {
+    setTodos(
+      todos.map(
+        (todo) => (todo.id === id ? { ...todo, checked: !todo.checked } : todo) // todo.id 내가 선택한 todo의 id 번호와 id 가 같으면 반전 다르면 그래도 둠
+      )
+    );
   };
 
   return (
     <TodoTemplate>
       <TodoInsert onInsert={onInsert} />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} onToggle={onToggle} />
     </TodoTemplate>
   );
 }

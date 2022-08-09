@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/TodoEdit.scss";
 
-const TodoEdit = ({ onInsertToggle, selectedTodo }) => {
+const TodoEdit = ({ selectedTodo, onUpdate }) => {
   const [value, setValue] = useState("");
 
   const onChange = (e) => {
@@ -10,10 +10,13 @@ const TodoEdit = ({ onInsertToggle, selectedTodo }) => {
 
   const onSubmit = (e) => {
     e.preventDefault(); //새로고침 없애는 내장 함수
-    onInsertToggle(); // 수정창 껏다 켰다 하는 함수
+    // onInsertToggle(); // 수정창 껏다 켰다 하는 함수
+    onUpdate(selectedTodo.id, value);
+    setValue("");
   };
 
   useEffect(() => {
+    //수정창을 띄웠을 때 수정 전 todo 값이 담겨져 있다.
     if (selectedTodo) {
       setValue(selectedTodo.text);
     }

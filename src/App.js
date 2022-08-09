@@ -44,6 +44,13 @@ const App = () => {
         ) // id가 다르면 맨 끝 오른쪽에 있는 todo로써 그대로 둔다
     );
   };
+  //수정 하는 함수
+  const onUpdate = (id, text) => {
+    setTodos((todos) =>
+      todos.map((todo) => (todo.id === id ? { ...todo, text } : todo))
+    );
+    onInsertToggle(); //TodoEgit에서 지운 이유는 수정 후에 창을 닫을려고
+  };
 
   return (
     <TodoTemplate>
@@ -56,7 +63,11 @@ const App = () => {
         onChageSelectedTodo={onChageSelectedTodo}
       />
       {insertToggle && (
-        <TodoEdit onInsertToggle={onInsertToggle} selectedTodo={selectedTodo} />
+        <TodoEdit
+          onInsertToggle={onInsertToggle}
+          selectedTodo={selectedTodo}
+          onUpdate={onUpdate}
+        />
       )}
       {/* isertToggle이 참이면 수정 창이 나오고 거짓이면 안나옴 TodoEdit은 무조건 참으로 서로가 참일 때 */}
     </TodoTemplate>

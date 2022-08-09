@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/TodoEdit.scss";
 
-const TodoEdit = ({ onInsertToggle }) => {
+const TodoEdit = ({ onInsertToggle, selectedTodo }) => {
   const [value, setValue] = useState("");
 
   const onChange = (e) => {
@@ -12,6 +12,12 @@ const TodoEdit = ({ onInsertToggle }) => {
     e.preventDefault(); //새로고침 없애는 내장 함수
     onInsertToggle(); // 수정창 껏다 켰다 하는 함수
   };
+
+  useEffect(() => {
+    if (selectedTodo) {
+      setValue(selectedTodo.text);
+    }
+  }, [selectedTodo]);
 
   return (
     <div className="background">

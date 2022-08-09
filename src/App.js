@@ -7,7 +7,7 @@ import TodoEdit from "./components/TodoEdit";
 const App = () => {
   const [todos, setTodos] = useState([]); //할 일을 저장할 todos 배열
   const [insertToggle, setInsertToggle] = useState(false); //insertToggle 이란 수정창이 on off로 반복하는 것
-  const [selectedTodo, setSelectedTodo] = useState(null); //
+  const [selectedTodo, setSelectedTodo] = useState(null); // 선택한 할 일
   const nextId = useRef(1); // id를 만들어 줌 첫번째 아이디는 1 그리고 순차적으로 생성
 
   //TodoInsert에 작성해도 되지만 여기에 작성한 이유는 다른 컴포넌트에서도 사용 하기 위해
@@ -26,7 +26,7 @@ const App = () => {
   };
 
   const onChageSelectedTodo = (todo) => {
-    setSelectedTodo((selectedTodo) => todo); //수정창을 띄웠을 때 할 일(todo)를 넣어주는 함수
+    setSelectedTodo((selectedTodo) => todo); //클릭 했을 때 할 일(todo)를 넣어주는 함수 => 이함수를 사용하면 todo를 넣겠다.
   };
 
   // 만든 할 일을 지우는 함수
@@ -55,14 +55,9 @@ const App = () => {
         onInsertToggle={onInsertToggle}
         onChageSelectedTodo={onChageSelectedTodo}
       />
-      {insertToggle && <TodoEdit onInsertToggle={onInsertToggle} />}
-      <button
-        onClick={() => {
-          console.log(selectedTodo);
-        }}
-      >
-        check
-      </button>
+      {insertToggle && (
+        <TodoEdit onInsertToggle={onInsertToggle} selectedTodo={selectedTodo} />
+      )}
       {/* isertToggle이 참이면 수정 창이 나오고 거짓이면 안나옴 TodoEdit은 무조건 참으로 서로가 참일 때 */}
     </TodoTemplate>
   );

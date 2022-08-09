@@ -8,7 +8,7 @@ import {
 import cn from "classnames";
 import "../styles/TodoListItem.scss";
 
-const TodoListItem = ({ todo, onRemove, onToggle }) => {
+const TodoListItem = ({ todo, onToggle, onRemove, onInsertToggle }) => {
   const { id, text, checked } = todo;
 
   return (
@@ -22,7 +22,12 @@ const TodoListItem = ({ todo, onRemove, onToggle }) => {
         {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
         <div className="text">{text}</div>
       </div>
-      <div className="edit" onClick={() => {}}>
+      <div
+        className="edit"
+        onClick={() => {
+          onInsertToggle();
+        }}
+      >
         <MdModeEditOutline />
       </div>
       <div

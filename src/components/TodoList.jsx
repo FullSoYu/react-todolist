@@ -1,16 +1,19 @@
 import React from "react";
-import TodoListItem from "./TodoListItem";
 import "../styles/TodoList.scss";
+import TodoListItem from "./TodoListItem";
 
-const TodoList = ({ todos, onRemove, onToggle }) => {
+// TodoListItem은 <li key={index}>{todo.text} </li> 에서 li를 대신해서 랜더링 한다
+
+const TodoList = ({ todos, onToggle, onRemove, onInsertToggle }) => {
   return (
     <div className="TodoList">
       {todos.map((todo, index) => (
         <TodoListItem
           todo={todo}
           key={index}
-          onToggle={onToggle}
           onRemove={onRemove}
+          onToggle={onToggle}
+          onInsertToggle={onInsertToggle}
         />
       ))}
     </div>
